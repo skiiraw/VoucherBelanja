@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Aisyah Thalita Shaqirah"/>
+        <attribute name="authors" value="kyra's laptop"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-09-13 01:34:39 PM"/>
+        <attribute name="created" value="U01LIFRFTEtPTSA0NjtLWVJBLUxBUFRPUDsyMDI2LTA5LTEwOzExOjI3OjMxIFBNOzI5NjQ="/>
+        <attribute name="edited" value="U01LIFRFTEtPTSA0NjtLWVJBLUxBUFRPUDsyMDI2LTA5LTEzOzAxOjM0OjM5IFBNOzY7MzA4NQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="As always, sebelum mulai membuat flowchart, kita perlu melakukan deklarasi terlebih dahulu. Di tahap ini, kita menentukan variabel apa saja yang dibutuhkan dan tipe data yang sesuai. Untuk case voucher ini, kita membutuhkan TotalBelanja untuk menyimpan nilai transaksi, Kategori untuk menentukan apakah produk termasuk Elektronik, UmurAkun untuk mengecek syarat minimal 30 hari, dan PromoLain untuk mengetahui apakah transaksi sedang menggunakan promo lain. Kemudian, kita juga membutuhkan Diskon untuk menyimpan hasil perhitungan potongan harga dan TotalBayar untuk menyimpan jumlah akhir yang harus dibayarkan"/>
+            <declare name="TotalBelanja" type="Integer" array="False" size=""/>
+            <comment text="TotalBelanja adalah nilai transaksi sebelum diskon."/>
+            <declare name="Kategori" type="Boolean" array="False" size=""/>
+            <declare name="UmurAkun" type="Integer" array="False" size=""/>
+            <declare name="PromoLain" type="Boolean" array="False" size=""/>
+            <declare name="Diskon" type="Real" array="False" size=""/>
+            <comment text="TotalBayar adalah nilai transaksi setelah diskon."/>
+            <declare name="TotalBayar" type="Real" array="False" size=""/>
+            <comment text="akun atau voucher"/>
+            <output expression="&quot;&#55358;&#56830;&#8902;&#3176;&#2510;&#730;&#10209;&#726; &#2282;Masukkan total belanja anda&quot;" newline="True"/>
+            <input variable="TotalBelanja"/>
+            <if expression="TotalBelanja &gt;= 150000">
+                <then>
+                    <output expression="&quot;Masukkan umur akun dalam hari:&quot;" newline="True"/>
+                    <input variable="UmurAkun"/>
+                    <if expression="UmurAkun&gt;=30">
+                        <then>
+                            <output expression="&quot;Apakah termasuk dalam kategori Elektronik? True/False&quot;" newline="True"/>
+                            <input variable="Kategori"/>
+                            <if expression="Kategori = True">
+                                <then>
+                                    <output expression="&quot;Apakah transaksi menggunakan promo lain? True/False&quot;" newline="True"/>
+                                    <input variable="PromoLain"/>
+                                    <if expression="PromoLain= True">
+                                        <then>
+                                            <output expression="&quot;Voucher ditolak karena tidak dapat digabungkan dengan promo lain. &#2798;(&#758;&#12640;&#65087;&#12640;)&#4304;&quot;" newline="True"/>
+                                            <output expression="&quot;Thank you for your purchase &#3366;&#3405;&#3366;&#3391;(&#65377;&#8226;&#768; ,&lt;)~&#10025;&#8231;&#8330;&quot;" newline="True"/>
+                                            <output expression="&quot;Total bayar: Rp&quot; &amp; TotalBelanja" newline="True"/>
+                                        </then>
+                                        <else>
+                                            <assign variable="diskon" expression="TotalBelanja * 0.15"/>
+                                            <if expression="diskon &gt; 50000">
+                                                <then>
+                                                    <assign variable="diskon" expression="50000"/>
+                                                </then>
+                                                <else/>
+                                            </if>
+                                            <assign variable="TotalBayar" expression="TotalBelanja - Diskon"/>
+                                            <output expression="&quot;Voucher berhasil digunakan.&quot;" newline="True"/>
+                                            <output expression="&quot;Thank you for your purchase &#3366;&#3405;&#3366;&#3391;(&#65377;&#8226;&#768; ,&lt;)~&#10025;&#8231;&#8330;&quot;" newline="True"/>
+                                            <output expression="&quot;Diskon: Rp&quot; &amp; Diskon" newline="True"/>
+                                            <output expression="&quot;Total bayar: Rp&quot; &amp; TotalBayar" newline="True"/>
+                                        </else>
+                                    </if>
+                                </then>
+                                <else>
+                                    <output expression="&quot;Voucher ditolak karena hanya berlaku untuk kategori Elektronik. &#2798;(&#758;&#12640;&#65087;&#12640;)&#4304;&quot;" newline="True"/>
+                                    <output expression="&quot;Thank you for your purchase &#3366;&#3405;&#3366;&#3391;(&#65377;&#8226;&#768; ,&lt;)~&#10025;&#8231;&#8330;&quot;" newline="True"/>
+                                    <output expression="&quot;Total bayar: Rp&quot; &amp; TotalBelanja" newline="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <output expression="&quot;Voucher ditolak karena umur akun kurang dari 30 hari. &#2798;(&#758;&#12640;&#65087;&#12640;)&#4304;&quot;" newline="True"/>
+                            <output expression="&quot;Thank you for your purchase &#3366;&#3405;&#3366;&#3391;(&#65377;&#8226;&#768; ,&lt;)~&#10025;&#8231;&#8330;&quot;" newline="True"/>
+                            <output expression="&quot;Total bayar: Rp&quot; &amp; TotalBelanja" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;Voucher ditolak karena minimal pembelian adalah Rp150.000. &#2798;(&#758;&#12640;&#65087;&#12640;)&#4304;&quot;" newline="True"/>
+                    <output expression="&quot;Thank you for your purchase &#3366;&#3405;&#3366;&#3391;(&#65377;&#8226;&#768; ,&lt;)~&#10025;&#8231;&#8330;&quot;" newline="True"/>
+                    <comment text="TOTAL BELANJAA"/>
+                    <output expression="&quot;Total bayar: Rp&quot; &amp; TotalBelanja" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
